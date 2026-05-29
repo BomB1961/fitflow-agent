@@ -53,7 +53,7 @@ The core workflow is a single analysis request: a user provides a job posting an
 
 This is a new project, so no data migration is required. Implementation can be delivered as a new Python package with documentation and samples. Rollback is removing the added application files and dependencies.
 
-## Open Questions
+## Resolved Decisions
 
-- Which real LLM provider should be wired first if the implementer has a preference?
-- Should the sample candidate profile be resume-style prose or structured bullet text?
+- Default LLM provider: Use the deterministic mock provider by default. Add only OpenAI-compatible provider hooks as optional configuration. Real API credentials must not be required for tests or local demo runs.
+- Sample candidate profile format: Use structured bullet text rather than resume-style prose, because it is easier for reviewers to read and produces more stable demo input.

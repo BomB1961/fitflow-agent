@@ -14,14 +14,22 @@ job_posting = st.text_area("Job posting", height=260)
 candidate_profile = st.text_area("Candidate profile", height=220)
 
 if st.button("Analyze fit", type="primary"):
-    response = requests.post(
-        f"{API_URL.rstrip('/')}/analyze",
-        json={
-            "job_posting": job_posting,
-            "candidate_profile": candidate_profile,
-        },
-        timeout=30,
-    )
+    try:
+        response = requests.post(
+            f"{API_URL.rstrip('/')}/analyze",
+            json={
+                "job_posting": job_posting,
+                "candidate_profile": candidate_profile,
+            },
+            timeout=30,
+        )
+    except requests.RequestException as exc:
+        st.error(
+            "Could not connect to the FitFlow API. "
+            "Start the FastAPI server first or check FITFLOW_API_URL."
+        )
+        st.code(str(exc))
+        st.stop()
 
     if response.ok:
         result = response.json()

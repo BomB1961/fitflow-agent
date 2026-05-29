@@ -14,7 +14,7 @@ class Settings(BaseModel):
 
 @lru_cache
 def get_settings() -> Settings:
-    load_dotenv()
+    load_dotenv(dotenv_path=".env")
     return Settings(
         llm_provider=getenv("FITFLOW_LLM_PROVIDER", "mock").strip().lower() or "mock",
         openai_api_key=getenv("OPENAI_API_KEY"),

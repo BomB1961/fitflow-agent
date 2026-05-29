@@ -1,6 +1,6 @@
 ## 1. Project Setup
 
-- [ ] 1.1 Check for proven open-source algorithms, patterns, or data structures that fit the MVP, verify license compatibility, and record any reference used in the work log or documentation.
+- [ ] 1.1 Confirm the MVP scope follows YAGNI/KISS: FastAPI backend, deterministic mock provider, structured response models, sample data, tests, and optional Streamlit UI only. Do not add scraping, authentication, database persistence, embeddings, or multi-agent orchestration.
 - [ ] 1.2 Create the Python project structure for the FastAPI app, optional Streamlit UI, tests, samples, and documentation.
 - [ ] 1.3 Add dependency and environment configuration files for FastAPI, Pydantic, Uvicorn, pytest, python-dotenv, optional Streamlit, and optional LLM provider support.
 

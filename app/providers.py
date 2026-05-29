@@ -6,6 +6,18 @@ from urllib import request
 from app.config import Settings
 
 
+def _strip_json_code_fence(content: str) -> str:
+    cleaned = content.strip()
+    if cleaned.startswith("```"):
+        lines = cleaned.splitlines()
+        if lines and lines[0].strip().startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        cleaned = "\n".join(lines).strip()
+    return cleaned
+
+
 class LLMProvider(ABC):
     name: str
 
@@ -137,7 +149,7 @@ class OpenAICompatibleProvider(LLMProvider):
             body = json.loads(response.read().decode("utf-8"))
 
         content = body["choices"][0]["message"]["content"]
-        result = json.loads(content)
+        result = json.loads(_strip_json_code_fence(content))
         result["provider"] = self.name
         return result
 

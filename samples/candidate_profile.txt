@@ -1,0 +1,5 @@
+- Built a Python portfolio project with a FastAPI backend and typed API responses.
+- Used Pydantic models to validate input and output data.
+- Created pytest tests for API health checks and form validation.
+- Wrote beginner-friendly README files for local setup and demo usage.
+- Interested in learning prompt design and LLM integration.

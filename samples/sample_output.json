@@ -1,0 +1,39 @@
+{
+  "fit_score": 84,
+  "summary": "The candidate shows partial alignment with the role and should focus preparation on the highest-impact gaps.",
+  "rationale": "This deterministic demo compares role keywords with candidate evidence to produce a stable portfolio-friendly output.",
+  "strengths": [
+    {
+      "skill": "Python",
+      "evidence": "The candidate profile includes experience related to Python."
+    },
+    {
+      "skill": "FastAPI",
+      "evidence": "The candidate profile includes experience related to FastAPI."
+    },
+    {
+      "skill": "API design",
+      "evidence": "The candidate profile includes experience related to API design."
+    },
+    {
+      "skill": "Pydantic",
+      "evidence": "The candidate profile includes experience related to Pydantic."
+    }
+  ],
+  "missing_skills": [
+    {
+      "skill": "Streamlit",
+      "importance": "high",
+      "why_it_matters": "The job posting appears to value Streamlit, but the profile does not show enough direct evidence."
+    }
+  ],
+  "preparation_plan": [
+    {
+      "priority": 1,
+      "action": "Prepare a concise portfolio example that demonstrates Streamlit.",
+      "reason": "The job posting appears to value Streamlit, but the profile does not show enough direct evidence.",
+      "suggested_time": "2-4 hours"
+    }
+  ],
+  "provider": "mock"
+}

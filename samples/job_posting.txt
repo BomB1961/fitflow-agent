@@ -1,0 +1,13 @@
+Junior AI Application Developer
+
+We are looking for a developer who can build Python APIs for AI-powered product workflows.
+
+Responsibilities:
+- Build FastAPI endpoints with clear request and response models.
+- Create simple LLM prompts and parse structured JSON responses.
+- Write tests with pytest for happy paths and validation errors.
+- Document setup steps for non-expert reviewers.
+
+Nice to have:
+- Streamlit demo experience.
+- Familiarity with Pydantic and API design.

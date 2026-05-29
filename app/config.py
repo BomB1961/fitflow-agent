@@ -1,6 +1,7 @@
 from functools import lru_cache
 from os import getenv
 
+from dotenv import load_dotenv
 from pydantic import BaseModel
 
 
@@ -13,6 +14,7 @@ class Settings(BaseModel):
 
 @lru_cache
 def get_settings() -> Settings:
+    load_dotenv()
     return Settings(
         llm_provider=getenv("FITFLOW_LLM_PROVIDER", "mock").strip().lower() or "mock",
         openai_api_key=getenv("OPENAI_API_KEY"),

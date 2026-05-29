@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -46,6 +49,18 @@ def test_analyze_rejects_blank_job_posting() -> None:
     assert response.status_code == 422
 
 
+def test_analyze_rejects_blank_candidate_profile() -> None:
+    response = client.post(
+        "/analyze",
+        json={
+            "job_posting": "Need Python APIs.",
+            "candidate_profile": "   ",
+        },
+    )
+
+    assert response.status_code == 422
+
+
 def test_demo_mode_does_not_require_api_key() -> None:
     result = analyze_fit(
         "Need Python FastAPI LLM prompt design.",
@@ -54,3 +69,13 @@ def test_demo_mode_does_not_require_api_key() -> None:
 
     assert result.provider == "mock"
     assert result.preparation_plan
+
+
+def test_sample_output_matches_mock_result() -> None:
+    job_posting = Path("samples/job_posting.txt").read_text(encoding="utf-8")
+    candidate_profile = Path("samples/candidate_profile.txt").read_text(encoding="utf-8")
+    expected = json.loads(Path("samples/sample_output.json").read_text(encoding="utf-8"))
+
+    result = analyze_fit(job_posting, candidate_profile)
+
+    assert result.model_dump() == expected

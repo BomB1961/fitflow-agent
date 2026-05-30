@@ -6,6 +6,12 @@
 
 FitFlow Agent는 채용공고와 지원자 프로필을 비교해 강점, 부족한 역량, 우선순위 기반 준비 계획을 생성하는 AI/LLM 포트폴리오 MVP입니다.
 
+## 데모 화면
+
+아래 화면은 기본 mock mode로 실행한 Streamlit 로컬 데모 예시입니다.
+
+![FitFlow Agent Streamlit demo](docs/assets/streamlit-demo.png)
+
 ## 프로젝트 목적
 
 - 구직자는 채용공고를 보고도 무엇을 우선 준비해야 할지 판단하기 어렵습니다.

@@ -12,6 +12,16 @@ FitFlow Agent는 채용공고와 지원자 프로필을 비교해 강점, 부족
 
 ![FitFlow Agent Streamlit demo](docs/assets/streamlit-demo.png)
 
+## Live API Demo
+
+FastAPI backend는 Render에 배포되어 있습니다.
+
+- Live API: https://fitflow-agent-api.onrender.com
+- Swagger UI: https://fitflow-agent-api.onrender.com/docs
+- Health check: https://fitflow-agent-api.onrender.com/health
+
+배포된 API는 기본 `mock` provider를 사용하므로 API key 없이 확인할 수 있습니다. Render free plan 특성상 비활성 상태 이후 첫 요청은 시간이 걸릴 수 있습니다.
+
 ## 프로젝트 목적
 
 - 구직자는 채용공고를 보고도 무엇을 우선 준비해야 할지 판단하기 어렵습니다.
@@ -163,6 +173,7 @@ pytest
 ## 배포 준비: Render
 
 이 저장소에는 FastAPI backend를 Render에 배포하기 위한 `render.yaml`이 포함되어 있습니다. 기본 배포 설정은 `mock` provider를 사용하므로 API key 없이 실행할 수 있습니다.
+현재 live backend URL은 `https://fitflow-agent-api.onrender.com`입니다.
 
 Render start command는 아래와 같습니다.
 

@@ -44,6 +44,33 @@ class MockLLMProvider(LLMProvider):
         "streamlit": "Streamlit",
     }
 
+    evidence_templates = {
+        "Python": "Built a Python portfolio project with a FastAPI backend and typed API responses.",
+        "FastAPI": "Created FastAPI endpoints with Pydantic models for typed request and response handling.",
+        "API design": "Shows practical API design through typed responses, validation-oriented models, and pytest tests.",
+        "Pydantic": "Used Pydantic models to validate input and output data.",
+        "Testing": "Created pytest tests for API health checks and form validation.",
+        "LLM integration": "Shows interest in prompt design and LLM integration, which is useful for AI-powered workflows.",
+        "Prompt design": "Mentions prompt design interest, giving the candidate a starting point for structured LLM work.",
+        "Streamlit": "Used Streamlit to make local demos easier for reviewers to try.",
+    }
+    gap_templates = {
+        "Streamlit": "The posting values Streamlit demo experience for non-technical reviewers, but the profile does not show a direct Streamlit demo example.",
+        "LLM integration": "The role expects simple LLM workflow implementation, but the profile needs stronger evidence of structured LLM output handling.",
+        "Prompt design": "The role includes prompt work, but the profile would be stronger with a concrete prompt-to-JSON example.",
+        "Docker": "The role may benefit from packaging or deployment readiness, but the profile does not show Docker evidence.",
+        "SQL": "The role may require data handling, but the profile does not show database querying experience.",
+        "React": "The role may need frontend implementation, but the profile does not show React project evidence.",
+    }
+    plan_templates = {
+        "Streamlit": "Build a small Streamlit demo walkthrough for a non-technical reviewer using the existing sample inputs.",
+        "LLM integration": "Add a concise portfolio note showing how an LLM response is parsed into the structured schema.",
+        "Prompt design": "Prepare one prompt example that maps a job posting and profile into JSON fields used by the API.",
+        "Docker": "Create a short local packaging note or Dockerfile experiment only if the target role asks for deployment basics.",
+        "SQL": "Add a small example explaining how analysis history could be stored and queried, without adding persistence yet.",
+        "React": "Prepare a short comparison between the current Streamlit demo and a possible React client if the role expects frontend work.",
+    }
+
     def analyze(self, job_posting: str, candidate_profile: str) -> dict[str, Any]:
         job_lower = job_posting.lower()
         profile_lower = candidate_profile.lower()
@@ -77,7 +104,10 @@ class MockLLMProvider(LLMProvider):
         strengths = [
             {
                 "skill": skill,
-                "evidence": f"The candidate profile includes experience related to {skill}.",
+                "evidence": self.evidence_templates.get(
+                    skill,
+                    f"The candidate profile includes concrete evidence related to {skill}.",
+                ),
             }
             for skill in matched[:4]
         ]
@@ -85,14 +115,20 @@ class MockLLMProvider(LLMProvider):
             {
                 "skill": skill,
                 "importance": "high" if index == 0 else "medium",
-                "why_it_matters": f"The job posting appears to value {skill}, but the profile does not show enough direct evidence.",
+                "why_it_matters": self.gap_templates.get(
+                    skill,
+                    f"The job posting values {skill}, but the profile does not show enough direct evidence yet.",
+                ),
             }
             for index, skill in enumerate(missing[:4])
         ]
         plan = [
             {
                 "priority": index + 1,
-                "action": f"Prepare a concise portfolio example that demonstrates {gap['skill']}.",
+                "action": self.plan_templates.get(
+                    gap["skill"],
+                    f"Prepare a concise portfolio example that demonstrates {gap['skill']}.",
+                ),
                 "reason": gap["why_it_matters"],
                 "suggested_time": "2-4 hours",
             }
@@ -101,8 +137,8 @@ class MockLLMProvider(LLMProvider):
 
         return {
             "fit_score": score,
-            "summary": "The candidate shows partial alignment with the role and should focus preparation on the highest-impact gaps.",
-            "rationale": "This deterministic demo compares role keywords with candidate evidence to produce a stable portfolio-friendly output.",
+            "summary": "The candidate has solid backend API foundations and should make the demo evidence more reviewer-friendly.",
+            "rationale": "This deterministic demo compares role keywords with candidate evidence, then turns the highest-impact gaps into practical preparation steps.",
             "strengths": strengths,
             "missing_skills": gaps,
             "preparation_plan": plan,

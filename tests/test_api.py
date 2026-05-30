@@ -79,3 +79,17 @@ def test_sample_output_matches_mock_result() -> None:
     result = analyze_fit(job_posting, candidate_profile)
 
     assert result.model_dump() == expected
+
+
+def test_sample_mock_output_uses_concrete_portfolio_guidance() -> None:
+    job_posting = Path("samples/job_posting.txt").read_text(encoding="utf-8")
+    candidate_profile = Path("samples/candidate_profile.txt").read_text(encoding="utf-8")
+
+    result = analyze_fit(job_posting, candidate_profile)
+    evidence_text = " ".join(strength.evidence for strength in result.strengths)
+    plan_text = " ".join(item.action for item in result.preparation_plan)
+
+    assert "typed API responses" in evidence_text
+    assert "pytest tests" in evidence_text
+    assert "Streamlit demo" in plan_text
+    assert "non-technical reviewer" in plan_text

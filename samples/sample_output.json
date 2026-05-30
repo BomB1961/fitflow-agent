@@ -1,37 +1,37 @@
 {
   "fit_score": 84,
-  "summary": "The candidate shows partial alignment with the role and should focus preparation on the highest-impact gaps.",
-  "rationale": "This deterministic demo compares role keywords with candidate evidence to produce a stable portfolio-friendly output.",
+  "summary": "The candidate has solid backend API foundations and should make the demo evidence more reviewer-friendly.",
+  "rationale": "This deterministic demo compares role keywords with candidate evidence, then turns the highest-impact gaps into practical preparation steps.",
   "strengths": [
     {
       "skill": "Python",
-      "evidence": "The candidate profile includes experience related to Python."
+      "evidence": "Built a Python portfolio project with a FastAPI backend and typed API responses."
     },
     {
       "skill": "FastAPI",
-      "evidence": "The candidate profile includes experience related to FastAPI."
+      "evidence": "Created FastAPI endpoints with Pydantic models for typed request and response handling."
     },
     {
       "skill": "API design",
-      "evidence": "The candidate profile includes experience related to API design."
+      "evidence": "Shows practical API design through typed responses, validation-oriented models, and pytest tests."
     },
     {
       "skill": "Pydantic",
-      "evidence": "The candidate profile includes experience related to Pydantic."
+      "evidence": "Used Pydantic models to validate input and output data."
     }
   ],
   "missing_skills": [
     {
       "skill": "Streamlit",
       "importance": "high",
-      "why_it_matters": "The job posting appears to value Streamlit, but the profile does not show enough direct evidence."
+      "why_it_matters": "The posting values Streamlit demo experience for non-technical reviewers, but the profile does not show a direct Streamlit demo example."
     }
   ],
   "preparation_plan": [
     {
       "priority": 1,
-      "action": "Prepare a concise portfolio example that demonstrates Streamlit.",
-      "reason": "The job posting appears to value Streamlit, but the profile does not show enough direct evidence.",
+      "action": "Build a small Streamlit demo walkthrough for a non-technical reviewer using the existing sample inputs.",
+      "reason": "The posting values Streamlit demo experience for non-technical reviewers, but the profile does not show a direct Streamlit demo example.",
       "suggested_time": "2-4 hours"
     }
   ],

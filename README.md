@@ -160,6 +160,25 @@ pytest
 - 더 현실적인 평가 예시 추가
 - 이력서/프로필 파일 업로드
 
+## 배포 준비: Render
+
+이 저장소에는 FastAPI backend를 Render에 배포하기 위한 `render.yaml`이 포함되어 있습니다. 기본 배포 설정은 `mock` provider를 사용하므로 API key 없이 실행할 수 있습니다.
+
+Render start command는 아래와 같습니다.
+
+```powershell
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+배포 준비 흐름:
+
+1. Render에서 New + Blueprint를 선택합니다.
+2. GitHub repository를 연결합니다.
+3. `render.yaml` 설정을 확인합니다.
+4. 배포 후 `/health` 또는 `/docs`에서 API 상태를 확인합니다.
+
+`/docs`에서 API를 직접 테스트할 수 있습니다. Streamlit UI 배포는 별도 작업이며, 이 Render 설정에는 FastAPI backend만 포함됩니다. OpenAI-compatible provider를 사용하려면 Render 환경변수로 설정하고, API key는 저장소에 커밋하지 않습니다.
+
 ## 라이선스
 
 이 프로젝트는 MIT License를 따릅니다. 자세한 내용은 [LICENSE](LICENSE)를 참고하세요.

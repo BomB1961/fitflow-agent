@@ -12,15 +12,18 @@ FitFlow Agent는 채용공고와 지원자 프로필을 비교해 강점, 부족
 
 ![FitFlow Agent Streamlit demo](docs/assets/streamlit-demo.png)
 
-## Live API Demo
+## Live Demo
 
-FastAPI backend는 Render에 배포되어 있습니다.
+Streamlit UI와 FastAPI backend는 포트폴리오 데모 확인용으로 배포되어 있습니다.
 
-- Live API: https://fitflow-agent-api.onrender.com
+- Streamlit Live UI: https://fitflow-agent-bbexvyzd7qnbe8afgqpvbe.streamlit.app/
+- FastAPI Live API: https://fitflow-agent-api.onrender.com
 - Swagger UI: https://fitflow-agent-api.onrender.com/docs
 - Health check: https://fitflow-agent-api.onrender.com/health
 
-배포된 API는 기본 `mock` provider를 사용하므로 API key 없이 확인할 수 있습니다. Render free plan 특성상 비활성 상태 이후 첫 요청은 시간이 걸릴 수 있습니다.
+Streamlit UI는 `FITFLOW_API_URL`을 통해 Render FastAPI backend를 호출합니다. 배포된 데모는 deterministic `mock` provider를 사용하므로 API key 없이 확인할 수 있습니다. Render free plan 특성상 비활성 상태 이후 첫 분석 요청은 시간이 걸릴 수 있습니다.
+
+이 배포는 포트폴리오 데모 확인용이며 production service를 목표로 한 구성은 아닙니다.
 
 ## 프로젝트 목적
 
@@ -114,11 +117,11 @@ streamlit run ui/streamlit_app.py
 
 Streamlit UI는 기본적으로 `http://localhost:8000`의 API를 호출합니다. 다른 API 주소를 사용하려면 `FITFLOW_API_URL`로 지정할 수 있습니다.
 
-## Streamlit Cloud 배포 준비
+## Streamlit Cloud 배포
 
-Streamlit UI는 Streamlit Community Cloud에 수동 배포할 수 있습니다. 배포된 UI는 `FITFLOW_API_URL=https://fitflow-agent-api.onrender.com`로 Render FastAPI backend를 호출하도록 설정합니다.
+Streamlit UI는 Streamlit Community Cloud에 배포되어 있으며, `FITFLOW_API_URL=https://fitflow-agent-api.onrender.com`로 Render FastAPI backend를 호출합니다.
 
-실제 Streamlit UI URL은 사용자가 수동 배포 후 확인하기 전까지 README에 추가하지 않습니다. 자세한 절차는 [Streamlit Community Cloud 배포 준비 가이드](docs/streamlit-cloud-deployment.md)를 참고하세요.
+수동 배포 설정 절차와 확인 체크리스트는 [Streamlit Community Cloud 배포 준비 가이드](docs/streamlit-cloud-deployment.md)를 참고하세요.
 
 ## 테스트 실행
 
@@ -155,6 +158,8 @@ pytest
 - mock provider
 - Optional OpenAI-compatible provider
 - Streamlit demo
+- Render FastAPI backend deployment
+- Streamlit Community Cloud demo deployment
 - Samples
 - Tests
 - CI
@@ -166,13 +171,13 @@ pytest
 - Database persistence
 - Embeddings/vector search
 - Multi-agent orchestration
-- Deployment
+- Production deployment/operation
 
 향후 개선 가능:
 
 - 분석 기록 저장
 - UI 결과 표시 개선
-- 배포
+- 배포 자동화와 운영 점검 개선
 - 더 현실적인 평가 예시 추가
 - 이력서/프로필 파일 업로드
 

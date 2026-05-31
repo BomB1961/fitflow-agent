@@ -114,6 +114,12 @@ streamlit run ui/streamlit_app.py
 
 Streamlit UI는 기본적으로 `http://localhost:8000`의 API를 호출합니다. 다른 API 주소를 사용하려면 `FITFLOW_API_URL`로 지정할 수 있습니다.
 
+## Streamlit Cloud 배포 준비
+
+Streamlit UI는 Streamlit Community Cloud에 수동 배포할 수 있습니다. 배포된 UI는 `FITFLOW_API_URL=https://fitflow-agent-api.onrender.com`로 Render FastAPI backend를 호출하도록 설정합니다.
+
+실제 Streamlit UI URL은 사용자가 수동 배포 후 확인하기 전까지 README에 추가하지 않습니다. 자세한 절차는 [Streamlit Community Cloud 배포 준비 가이드](docs/streamlit-cloud-deployment.md)를 참고하세요.
+
 ## 테스트 실행
 
 ```powershell
